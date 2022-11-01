@@ -64,10 +64,11 @@ Aşağıdaki takimSkoru() fonksiyonununda aşağıdakileri yapınız:
 Not: Bu fonskiyon, aşağıdaki diğer görevler için de bir callback fonksiyonu olarak da kullanılacak
 */
 
-function takimSkoru(/*Kodunuzu buraya yazınız*/){
-    /*Kodunuzu buraya yazınız*/
+function takimSkoru(){
+    let rastgeleSkor = Math.floor(Math.random()*16+10); // +10'u parantezin içine ya da dışına koymak bir şeyi değiştirmez. İşlem önceliğinde 'çarpma'nın önceliği var.
+    return rastgeleSkor;
 }
-
+console.log(takimSkoru());
 
 
 
@@ -86,9 +87,21 @@ Aşağıdaki macSonucu() fonksiyonununda aşağıdakileri yapınız:
 }
 */ 
 
-function macSonucu(/*Kodunuzu buraya yazınız*/){
-  /*Kodunuzu buraya yazınız*/
+function macSonucu(callback, ceyrekSayisi){
+  let evSahibi = 0;
+  let KonukTakim = 0;
+ 
+  for( let i=1; i<=ceyrekSayisi; i++){
+    evSahibi += callback();
+    KonukTakim += callback();
+  }
+  let skor = {};
+  skor.Evskorsahibi = evSahibi;
+  skor['konukTakim'] = KonukTakim;
+  return skor;
 }
+console.log(macSonucu(takimSkoru, 4));
+
 
 
 
@@ -109,10 +122,17 @@ Aşağıdaki periyotSkoru() fonksiyonununda aşağıdakileri yapınız:
   */
 
 
-function periyotSkoru(/*Kodunuzu buraya yazınız*/) {
-  /*Kodunuzu buraya yazınız*/
+function periyotSkoru(takimSkoru) {
+  const skorTabela = {
+    "EvSahibi": 0,
+    "KonukTakim": 0
+  };
+  skorTabela.EvSahibi=takimSkoru();
+  skorTabela.KonukTakim=takimSkoru();
+  return skorTabela;
 
 }
+console.log(periyotSkoru(takimSkoru));
 
 
 /* Zorlayıcı Görev 5: skorTabelasi() 
